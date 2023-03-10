@@ -1,0 +1,34 @@
+{% include 'header.html' %}
+<div class="card">
+  <h1>List New Car</h1>
+  <hr>
+  <h3>Upload Images</h3>
+  <form method="POST" enctype="multipart/form-data">
+<input type="file" name="files" multiple="">
+  <br>
+  <h4>Name of Car</h4>
+<input name="title">
+  <h4>Price</h4>
+<input name="price" type="number">
+  <h4>Details About Car</h4>
+  <textarea cols="35" rows ="20" name="text"></textarea>
+  <br>
+  <input type="submit" , value="List Car" style="width: 260.6px;height: 50px"> 
+  </form>
+</div>
+<div class="card">	
+  <h1>Delete Listings</h1>
+  <hr>
+{% for car in cars %}
+ <div class="card">	
+  <form method="POST" action="/delete">
+	  <input type="hidden" name="name" value="{{ car[2] }}">
+	  <input type="hidden" name="id" value="{{ car[0] }}">
+  <h4>{{ car[2] }}</h4>
+     <img src="/static/images/uploads/{{ car[4] }}" alt="{{ car[2] }}" style="width:80%">
+     <input id="test" name="{{ car[2] }}" type="submit" , value="Delete" style="width: 260.6px;height: 50px"> 
+  </form>
+ </div>
+{% endfor %}
+</div>
+{% include 'footer.html' %}

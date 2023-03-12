@@ -16,20 +16,19 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/')
 def index():
-    con = get_db().cursor()
+    con = get_db()
     cars = con.execute("SELECT * FROM cars")
     return render_template('index.html', cars=cars)
 
 @app.route('/cars/<carid>')
 def car(carid):
-    con = get_db().cursor()
-    con_pics = get_db().cursor()
+    con = get_db()
 
     cars = con.execute(f"SELECT * FROM cars WHERE car_id=?", carid)
-    pics = con_pics.execute(f"SELECT * FROM pics WHERE id=?", carid)
-
-    pics = pics.fetchall()
     cars = cars.fetchall()
+
+    pics = con.execute(f"SELECT * FROM pics WHERE id=?", carid)
+    pics = pics.fetchall()
 
     return render_template('details.html', car=cars[0], pics=pics)
 

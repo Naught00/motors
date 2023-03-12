@@ -4,7 +4,7 @@
   <hr>
   <h3>Upload Images</h3>
   <form method="POST" enctype="multipart/form-data">
-<input type="file" name="files" multiple="">
+<input class="button" type="file" name="files" multiple="" style="width: 295px;">
   <br>
   <h4>Name of Car</h4>
 <input name="title">
@@ -13,7 +13,7 @@
   <h4>Details About Car</h4>
   <textarea cols="35" rows ="20" name="text"></textarea>
   <br>
-  <input type="submit" , value="List Car" style="width: 260.6px;height: 50px"> 
+  <input class="button" type="submit" , value="List Car" style="width: 260.6px;height: 50px"> 
   </form>
 </div>
 <div class="card">	
@@ -26,7 +26,7 @@
 	  <input type="hidden" name="id" value="{{ car[0] }}">
   <h4>{{ car[2] }}</h4>
      <img src="/static/images/uploads/{{ car[4] }}" alt="{{ car[2] }}" style="width:80%">
-     <input id="test" name="{{ car[2] }}" type="submit" , value="Delete" style="width: 260.6px;height: 50px"> 
+     <input class="button" id="test" name="{{ car[2] }}" type="submit" , value="Delete" style="width: 260.6px;height: 50px"> 
   </form>
  </div>
 {% endfor %}

@@ -3,6 +3,7 @@ from flask import render_template
 from flask import g
 from flask import  flash, request, redirect, url_for
 from flask import send_from_directory, make_response
+from flask import session
 import os
 import sqlite3
 from werkzeug.utils import secure_filename
@@ -13,6 +14,7 @@ DATABASE = 'cars.db'
 
 app = Flask(__name__, static_url_path='/static')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.secret_key = ***REMOVED***
 
 @app.route('/')
 def index():
@@ -50,8 +52,7 @@ def allowed_file(filename):
 
 @app.route('/portal', methods=['GET', 'POST'])
 def portal():
-    password = request.cookies.get('password')
-    if password != "Tipperary88":
+    if 'password' not in session: 
         return "<p> no </p>"
 
     if request.method == 'POST':
@@ -124,16 +125,14 @@ def contact():
 
 @app.route('/login', methods=('GET', 'POST'))
 def login():
-    password = request.cookies.get('password')
-    if password == "Tipperary88":
+    if 'password' in session: 
         return redirect("/portal")
 
     if request.method == "POST":
         password = request.form['password']
         if password == "Tipperary88":
-            resp = make_response(redirect("/portal"))
-            resp.set_cookie('password', password)
-            return resp
+            session['password'] = password
+            return redirect("/portal")
 
     return render_template('pass.html')
 

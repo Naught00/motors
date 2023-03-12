@@ -1,11 +1,11 @@
 {% include 'header.html' %}
 {% for car in cars %}
-     <div class="card">
-     <h1>{{ car[2] }}</h1>
-     <img src="/static/images/uploads/{{ car[4] }}" alt="{{ car[2] }}" style="width:80%">
-     <p class="price"><strong>€{{ car[1] }}</strong></p>
-     <p>{{ car[3] }}</p>
-     <p><button onclick="window.location.href='/cars/{{car[0]}}';">Details</button></p>
+<div class="card">
+	<h1>{{ car[2] }}</h1>
+	<img src="/static/images/uploads/{{ car[4] }}" alt="{{ car[2] }}" style="width:80%">
+	<p class="price"><strong>€{{ car[1] }}</strong></p>
+	<p>{{ car[3] }}</p>
+	<p><button onclick="window.location.href='/cars/{{car[0]}}';">Details</button></p>
 </div>
 {% endfor %}
 {% include 'footer.html' %}

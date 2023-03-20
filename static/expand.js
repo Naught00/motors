@@ -26,3 +26,13 @@ function showSlides(n) {
   slides[slideIndex-1].style.display = "block";
   dots[slideIndex-1].className += " active";
 } 
+
+function expand_price(id) {
+  var x = document.getElementById(id);
+  if (x.style.display === "none") {
+	  console.log("here");
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}

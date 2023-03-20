@@ -1,0 +1,14 @@
+CREATE TABLE cars (
+	car_id INTEGER PRIMARY KEY,
+	price TEXT NOT NULL,
+	car_name TEXT NOT NULL,
+	text TEXT NOT NULL UNIQUE,
+	pics TEXT NOT NULL
+);
+
+CREATE TABLE pics (
+	id INTEGER KEY,
+	pic TEXT NOT NULL
+);
+
+

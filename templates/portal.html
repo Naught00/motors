@@ -21,14 +21,24 @@
 	<hr>
 	{% for car in cars %}
 	<div class="card">	
+			<h4>{{ car[2] }}</h4>
+			<img src="/static/images/uploads/{{ car[4] }}" alt="{{ car[2] }}" style="width:80%">
+			<p class="price"><b> €{{ car[1]}}</b> </p>
+	<div style="margin-top: 10px;margin-bottom: 10px">
+		<b>	<a class="replybutton" style="cursor: pointer; padding: 0px;" onclick="expand_price({{ car[0] }})">Edit Price</a> </b>
+		<form id="{{ car[0] }}" method="POST" action="/edit-price" style="display: none;">
+			<br>
+			<input type="number" name="new_price">
+			<input type="hidden" name="id" value="{{ car[0] }}">
+		</form>
+	</div>
 		<form method="POST" action="/delete">
 			<input type="hidden" name="name" value="{{ car[2] }}">
 			<input type="hidden" name="id" value="{{ car[0] }}">
-			<h4>{{ car[2] }}</h4>
-			<img src="/static/images/uploads/{{ car[4] }}" alt="{{ car[2] }}" style="width:80%">
+			<br>
 			<input class="button" id="test" name="{{ car[2] }}" type="submit" , value="Delete" style="width: 260.6px;height: 50px"> 
+			<br>
+			<br>
 		</form>
 	</div>
 	{% endfor %}
-</div>
-{% include 'footer.html' %}

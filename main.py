@@ -14,7 +14,8 @@ DATABASE = 'cars.db'
 
 app = Flask(__name__, static_url_path='/static')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.secret_key = ***REMOVED***
+app.secret_key = os.getenv("CAR_SECRET_KEY")
+PASSWORD = os.getenv("CAR_PASS")
 
 @app.route('/')
 def index():
@@ -130,9 +131,20 @@ def login():
 
     if request.method == "POST":
         password = request.form['password']
-        if password == "Tipperary88":
+        if password == PASSWORD:
             session['password'] = password
             return redirect("/portal")
 
     return render_template('pass.html')
 
+def edit_price():
+    price = request.form['new_price']
+    car_id = request.form['id']
+
+    print("CHANGIN PRICE:") 
+
+    db = get_db()
+    db.execute("UPDATE cars SET price=? where car_id=?", (price, car_id))
+    db.commit()
+    db.close()
+    return redirect('/portal')
